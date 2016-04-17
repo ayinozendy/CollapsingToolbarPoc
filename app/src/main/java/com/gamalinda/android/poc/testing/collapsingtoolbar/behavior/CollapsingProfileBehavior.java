@@ -78,9 +78,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         int y1 = profileImageSizeBig;
         int y2 = profileImageSizeSmall;
 
-
-        //slope = (y2 - y1) over (x2 - x1)
-        return (float) (y2 - y1) / (float) (x2 - x1);
+        return slopeCalculator(x1, y1, x2, y2);
     }
 
     private void updateProfileImageMargins() {
@@ -102,14 +100,18 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         int y1 = 0;
         int y2 = calculateProfileImageSmallMargin();
 
-        //slope = (y2 - y1) over (x2 - x1)
-        return (float) (y2 - y1) / (float) (x2 - x1);
+        return slopeCalculator(x1, y1, x2, y2);
     }
 
     private int calculateProfileImageSmallMargin() {
         int halfToolbarHeight = toolBarHeight / 2;
         int halfProfileImageSmall = profileImageSizeSmall / 2;
         return halfToolbarHeight - halfProfileImageSmall;
+    }
+
+    private float slopeCalculator(final float x1, final float y1, final float x2, final float y2) {
+        //slope = (y2 - y1) over (x2 - x1)
+        return (y2 - y1) / (x2 - x1);
     }
 
     private void logValues() {
