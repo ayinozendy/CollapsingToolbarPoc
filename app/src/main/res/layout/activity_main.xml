@@ -34,4 +34,38 @@
 
     <include layout="@layout/content_main" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:background="#55FF0000"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/profile_big_size"
+            android:layout_height="@dimen/profile_big_size"
+            android:background="#FF0055"
+            android:contentDescription="@string/test_profile_image_desc"
+            android:src="@android:drawable/ic_dialog_dialer" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test_profile_name"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test_profile_subtitle"
+
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
