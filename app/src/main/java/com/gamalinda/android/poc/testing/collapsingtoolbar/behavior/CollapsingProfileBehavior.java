@@ -15,7 +15,8 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     private static final String TAG = "BehaviorPOC";
     private static final boolean DEBUG_LOG_HEIGHTS = false;
     private static final boolean DEBUG_LOG_YPOS = true;
-    private static final boolean DEBUG_LOG_PROFILE_IMAGE = true;
+    private static final boolean DEBUG_LOG_PROFILE_IMAGE = false;
+    private static final boolean DEBUG_LOG_PROFILE_IMAGE_LOC = true;
 
     private Context context;
 
@@ -50,6 +51,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         toolBarHeight = (appBar.findViewById(R.id.toolbar)).getHeight();
         updateOffset();
         updateProfileImageSize();
+        updateProfileImageMargins();
         return true;
     }
 
@@ -76,8 +78,38 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         int y1 = profileImageSizeBig;
         int y2 = profileImageSizeSmall;
 
+
         //slope = (y2 - y1) over (x2 - x1)
         return (float) (y2 - y1) / (float) (x2 - x1);
+    }
+
+    private void updateProfileImageMargins() {
+        float x = appBar.getY();
+        float m = calculateSlopeForImageMargins();
+        float b = 0;
+        float y = m * x + b; //Equation of a line
+
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileImage.getLayoutParams();
+        lp.bottomMargin = (int) y;
+        lp.leftMargin = (int) y;
+        lp.rightMargin = (int) y;
+        profileImage.setLayoutParams(lp);
+    }
+
+    private float calculateSlopeForImageMargins() {
+        int x1 = 0;
+        int x2 = toolBarHeight - appBarHeight;
+        int y1 = 0;
+        int y2 = calculateProfileImageSmallMargin();
+
+        //slope = (y2 - y1) over (x2 - x1)
+        return (float) (y2 - y1) / (float) (x2 - x1);
+    }
+
+    private int calculateProfileImageSmallMargin() {
+        int halfToolbarHeight = toolBarHeight / 2;
+        int halfProfileImageSmall = profileImageSizeSmall / 2;
+        return halfToolbarHeight - halfProfileImageSmall;
     }
 
     private void logValues() {
@@ -89,6 +121,9 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         if (DEBUG_LOG_YPOS) {
             logText = "Dependency Y: " + appBar.getY() + ", Child Y: " + headerProfile.getY();
             Log.i(TAG, logText);
+        }
+        if (DEBUG_LOG_PROFILE_IMAGE_LOC) {
+            Log.d(TAG, "Profile Image Loc: " + profileImage.getY());
         }
     }
 }
