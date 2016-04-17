@@ -43,6 +43,7 @@
         app:layout_behavior="com.gamalinda.android.poc.testing.collapsingtoolbar.behavior.CollapsingProfileBehavior">
 
         <ImageView
+            android:id="@+id/profileImage"
             android:layout_width="@dimen/profile_big_size"
             android:layout_height="@dimen/profile_big_size"
             android:background="#FF0055"
