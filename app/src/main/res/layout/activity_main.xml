@@ -39,7 +39,8 @@
         android:layout_height="@dimen/app_bar_height"
         android:background="#55FF0000"
         android:gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_behavior="com.gamalinda.android.poc.testing.collapsingtoolbar.behavior.CollapsingProfileBehavior">
 
         <ImageView
             android:layout_width="@dimen/profile_big_size"
