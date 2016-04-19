@@ -94,4 +94,5 @@
     <string name="test_profile_image_desc">Profile Image</string>
     <string name="test_profile_name">PROFILE NAME</string>
     <string name="test_profile_subtitle">subtitle</string>
+    <string name="test_profile_misc_title">misc title 12345</string>
 </resources>
