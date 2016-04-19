@@ -42,7 +42,8 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         headerProfile = child;
         appBarHeight = appBar.getHeight();
         profileImage = headerProfile.findViewById(R.id.profileImage);
-
+        profileImage.setPivotX(0);
+        profileImage.setPivotY(0);
         return dependency instanceof AppBarLayout;
     }
 
