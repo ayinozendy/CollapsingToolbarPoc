@@ -177,9 +177,10 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
 
     private void updateSubtitleAndMiscAlpha() {
         float updatedValue = getUpdatedInterpolatedValue(1f, 0f);
+        float poweredValue = (float) Math.pow(updatedValue, 6);
 
-        profileSubtitle.setAlpha(updatedValue);
-        profileMisc.setAlpha(updatedValue);
+        profileSubtitle.setAlpha(poweredValue);
+        profileMisc.setAlpha(poweredValue);
     }
 
     private float slopeCalculator(final float x1, final float y1, final float x2, final float y2) {
