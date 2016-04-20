@@ -127,46 +127,23 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     }
 
     private void updateProfileImageSize() {
-        float x = appBar.getY();
-        float m = calculateSlopeForImageSizeOffset();
-        float b = profileImageSizeBig;
-        float y = getIntercept(m, x, b);
+        int updatedValue = (int) getUpdatedInterpolatedValue(profileImageSizeBig, profileImageSizeSmall);
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileImage.getLayoutParams();
-        lp.height = (int) y;
-        lp.width = (int) y;
+        lp.height = updatedValue;
+        lp.width = updatedValue;
         profileImage.setLayoutParams(lp);
-    }
-
-    private float calculateSlopeForImageSizeOffset() {
-        int x1 = 0;
-        int x2 = toolBarHeight - appBarHeight;
-        int y1 = profileImageSizeBig;
-        int y2 = profileImageSizeSmall;
-
-        return slopeCalculator(x1, y1, x2, y2);
     }
 
     private void updateProfileImageMargins() {
-        float x = appBar.getY();
-        float m = calculateSlopeForImageMargins();
-        float b = profileImageMaxMargin;
-        float y = getIntercept(m, x, b);
+        float targetOpenAppbarValue = calculateProfileImageSmallMargin();
+        int updatedValue = (int) getUpdatedInterpolatedValue(profileImageMaxMargin, targetOpenAppbarValue);
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileImage.getLayoutParams();
-        lp.bottomMargin = (int) y;
-        lp.leftMargin = (int) y;
-        lp.rightMargin = (int) y;
+        lp.bottomMargin = updatedValue;
+        lp.leftMargin = updatedValue;
+        lp.rightMargin = updatedValue;
         profileImage.setLayoutParams(lp);
-    }
-
-    private float calculateSlopeForImageMargins() {
-        int x1 = 0;
-        int x2 = toolBarHeight - appBarHeight;
-        int y1 = profileImageMaxMargin;
-        int y2 = calculateProfileImageSmallMargin();
-
-        return slopeCalculator(x1, y1, x2, y2);
     }
 
     private int calculateProfileImageSmallMargin() {
@@ -176,44 +153,20 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     }
 
     private void updateProfileTextContainerHeight() {
-        float x = appBar.getY();
-        float m = calculateSlopeForProfileTextContainerOffset();
-        float b = profileTextContainerMaxHeight;
-        float y = getIntercept(m, x, b);
+        int updatedValue = (int) getUpdatedInterpolatedValue(profileTextContainerMaxHeight, toolBarHeight);
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileTextContainer.getLayoutParams();
-        lp.height = (int) y;
+        lp.height = updatedValue;
         profileTextContainer.setLayoutParams(lp);
     }
 
-    private float calculateSlopeForProfileTextContainerOffset() {
-        int x1 = 0;
-        int x2 = toolBarHeight - appBarHeight;
-        int y1 = profileTextContainerMaxHeight;
-        int y2 = toolBarHeight;
-
-        return slopeCalculator(x1, y1, x2, y2);
-    }
-
     private void updateProfileTextMargin() {
-        float x = appBar.getY();
-        float m = calculateSlopeForProfileTextMarginOffset();
-        float b = 0;
-        float y = getIntercept(m, x, b);
+        float targetOpenAppbarValue = calculateProfileTextMargin();
+        int updatedValue = (int) getUpdatedInterpolatedValue(0f, targetOpenAppbarValue);
 
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) profileName.getLayoutParams();
-        lp.topMargin = (int) y;
-//        lp.bottomMargin = (int) y;
+        lp.topMargin = updatedValue;
         profileName.setLayoutParams(lp);
-    }
-
-    private float calculateSlopeForProfileTextMarginOffset() {
-        int x1 = 0;
-        int x2 = toolBarHeight - appBarHeight;
-        int y1 = 0;
-        int y2 = calculateProfileTextMargin();
-
-        return slopeCalculator(x1, y1, x2, y2);
     }
 
     private int calculateProfileTextMargin() {
@@ -223,13 +176,10 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     }
 
     private void updateSubtitleAndMiscAlpha() {
-        float x = appBar.getY();
-        float m = 1f / (appBarHeight - toolBarHeight);
-        float b = 1f;
-        float y = getIntercept(m, x, b);
+        float updatedValue = getUpdatedInterpolatedValue(1f, 0f);
 
-        profileSubtitle.setAlpha(y);
-        profileMisc.setAlpha(y);
+        profileSubtitle.setAlpha(updatedValue);
+        profileMisc.setAlpha(updatedValue);
     }
 
     private float slopeCalculator(final float x1, final float y1, final float x2, final float y2) {
@@ -242,7 +192,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     }
 
     private float getUpdatedInterpolatedValue(float openSizeTarget, float closedSizeTarget) {
-        return getIntercept(closedSizeTarget - openSizeTarget,normalizedRange,openSizeTarget);
+        return getIntercept(closedSizeTarget - openSizeTarget, normalizedRange, openSizeTarget);
     }
 
     private void logValues() {
