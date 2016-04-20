@@ -68,4 +68,49 @@ public class CollapsingProfileHeaderView extends LinearLayout {
         miscTextView.setText(misc);
         miscTextView.setCompoundDrawablesWithIntrinsicBounds(miscIcon, 0, 0, 0);
     }
+
+    public int getProfileDrawable() {
+        return profileDrawable;
+    }
+
+    public void setProfileDrawable(int profileDrawable) {
+        this.profileDrawable = profileDrawable;
+        profileImage.setImageResource(profileDrawable);
+    }
+
+    public String getProfileName() {
+        return profileName;
+    }
+
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
+        profileNameTextView.setText(profileName);
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+        subtitleTextView.setText(subtitle);
+    }
+
+    public String getMisc() {
+        return misc;
+    }
+
+    public void setMisc(String misc) {
+        this.misc = misc;
+        miscTextView.setText(misc);
+    }
+
+    public int getMiscIcon() {
+        return miscIcon;
+    }
+
+    public void setMiscIcon(int miscIcon) {
+        this.miscIcon = miscIcon;
+        miscTextView.setCompoundDrawablesWithIntrinsicBounds(miscIcon, 0, 0, 0);
+    }
 }
