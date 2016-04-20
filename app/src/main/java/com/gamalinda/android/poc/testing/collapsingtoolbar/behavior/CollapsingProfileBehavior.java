@@ -44,9 +44,12 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     private int profileNameHeight;
     private int profileNameMaxMargin;
 
+    private float normalizedRange;
+
     public CollapsingProfileBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        normalizedRange = 0f;
         profileImageSizeSmall = (int) context.getResources().getDimension(R.dimen.profile_small_size);
         profileImageSizeBig = (int) context.getResources().getDimension(R.dimen.profile_big_size);
         profileImageMaxMargin = (int) context.getResources().getDimension(R.dimen.profile_image_margin_max);
@@ -98,8 +101,15 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, LinearLayout child, View dependency) {
         toolBarHeight = (appBar.findViewById(R.id.toolbar)).getHeight();
+        updateNormalizedRange();
         updateOffset();
         return true;
+    }
+
+    private void updateNormalizedRange() {
+        float dividend = appBar.getY();
+        float divisor = toolBarHeight - appBarHeight;
+        normalizedRange = dividend / divisor;
     }
 
     private void updateOffset() {
@@ -229,6 +239,10 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
 
     private float getIntercept(float m, float x, float b) {
         return m * x + b;
+    }
+
+    private float getUpdatedInterpolatedValue(float openSizeTarget, float closedSizeTarget) {
+        return getIntercept(closedSizeTarget - openSizeTarget,normalizedRange,openSizeTarget);
     }
 
     private void logValues() {
