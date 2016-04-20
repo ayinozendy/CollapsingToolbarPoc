@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_bar_height"
+    android:background="#55FF0000"
+    android:gravity="bottom"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/profile_big_size"
+        android:layout_height="@dimen/profile_big_size"
+        android:layout_marginBottom="@dimen/profile_image_margin_max"
+        android:layout_marginLeft="@dimen/profile_image_margin_max"
+        android:layout_marginRight="@dimen/profile_image_margin_max"
+        android:background="#FF0055"
+        android:contentDescription="@string/test_profile_image_desc"
+        android:src="@android:drawable/ic_dialog_dialer" />
+
+    <RelativeLayout
+        android:id="@+id/profileTextContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/app_bar_height"
+        android:background="#00DDFF"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#55FF55"
+            android:text="@string/test_profile_name"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/profileSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileName"
+            android:text="@string/test_profile_subtitle"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/profileMisc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:drawableLeft="@mipmap/coin"
+            android:drawablePadding="2sp"
+            android:paddingBottom="@dimen/profile_misc_padding"
+            android:text="@string/test_profile_misc_title"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</LinearLayout>
