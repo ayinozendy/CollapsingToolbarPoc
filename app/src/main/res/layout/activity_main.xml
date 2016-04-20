@@ -50,29 +50,42 @@
             android:contentDescription="@string/test_profile_image_desc"
             android:src="@android:drawable/ic_dialog_dialer" />
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/profileTextContainer"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/app_bar_height"
+            android:background="#00DDFF"
+            android:gravity="bottom"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/profileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="#55FF55"
                 android:text="@string/test_profile_name"
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/profileSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/profileName"
                 android:text="@string/test_profile_subtitle"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/profileMisc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:drawableLeft="@mipmap/coin"
+                android:drawablePadding="2sp"
                 android:text="@string/test_profile_misc_title"
                 android:textSize="15sp" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
