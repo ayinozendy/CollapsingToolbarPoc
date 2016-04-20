@@ -43,8 +43,6 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     private int profileTextContainerMaxHeight;
     private int profileNameHeight;
     private int profileNameMaxMargin;
-    private int profileSubtitleMaxHeight;
-    private int profileMiscMaxHeight;
 
     public CollapsingProfileBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -56,10 +54,15 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
 
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, LinearLayout child, View dependency) {
+        initialize(child, dependency);
+        return dependency instanceof AppBarLayout;
+    }
+
+    private void initialize(LinearLayout child, View dependency) {
         windowSize = getDisplaySize();
         appBar = dependency;
-        headerProfile = child;
         appBarHeight = appBar.getHeight();
+        headerProfile = child;
         profileImage = headerProfile.findViewById(R.id.profileImage);
         profileImage.setPivotX(0);
         profileImage.setPivotY(0);
@@ -70,17 +73,9 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         profileNameHeight = profileName.getHeight();
         profileSubtitle = profileTextContainer.findViewById(R.id.profileSubtitle);
         profileMisc = profileTextContainer.findViewById(R.id.profileMisc);
-        profileSubtitleMaxHeight = calculateMaxHeightFromTextView((TextView) profileSubtitle);
-        profileMiscMaxHeight = calculateMaxHeightFromTextView((TextView) profileMisc);
+        int profileSubtitleMaxHeight = calculateMaxHeightFromTextView((TextView) profileSubtitle);
+        int profileMiscMaxHeight = calculateMaxHeightFromTextView((TextView) profileMisc);
         profileTextContainerMaxHeight = profileNameHeight + profileSubtitleMaxHeight + profileMiscMaxHeight;
-        return dependency instanceof AppBarLayout;
-    }
-
-    private int calculateMaxHeightFromTextView(TextView textView) {
-        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(windowSize.x, View.MeasureSpec.AT_MOST);
-        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        textView.measure(widthMeasureSpec, heightMeasureSpec);
-        return textView.getMeasuredHeight();
     }
 
     private Point getDisplaySize() {
@@ -93,19 +88,30 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         return size;
     }
 
+    private int calculateMaxHeightFromTextView(TextView textView) {
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(windowSize.x, View.MeasureSpec.AT_MOST);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        textView.measure(widthMeasureSpec, heightMeasureSpec);
+        return textView.getMeasuredHeight();
+    }
+
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, LinearLayout child, View dependency) {
         toolBarHeight = (appBar.findViewById(R.id.toolbar)).getHeight();
         updateOffset();
+        return true;
+    }
+
+    private void updateOffset() {
+        updateHeaderProfileOffset();
         updateProfileImageSize();
         updateProfileImageMargins();
         updateProfileTextContainerHeight();
         updateProfileTextMargin();
         updateSubtitleAndMiscAlpha();
-        return true;
     }
 
-    private void updateOffset() {
+    private void updateHeaderProfileOffset() {
         headerProfile.setY(appBar.getY());
         logValues();
     }
