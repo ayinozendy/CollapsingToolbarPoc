@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CollapsingProfileHeaderView">
+        <attr name="profileImage" format="reference" />
         <attr name="profileName" format="string" />
         <attr name="profileSubtitle" format="string" />
         <attr name="profileMisc" format="string" />
+        <attr name="profileMiscIcon" format="reference" />
     </declare-styleable>
 </resources>

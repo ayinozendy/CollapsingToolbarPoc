@@ -14,8 +14,7 @@
         android:layout_marginLeft="@dimen/profile_image_margin_max"
         android:layout_marginRight="@dimen/profile_image_margin_max"
         android:background="#FF0055"
-        android:contentDescription="@string/test_profile_image_desc"
-        android:src="@android:drawable/ic_dialog_dialer" />
+        android:contentDescription="@string/test_profile_image_desc" />
 
     <RelativeLayout
         android:id="@+id/profileTextContainer"
@@ -45,7 +44,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:drawableLeft="@mipmap/coin"
             android:drawablePadding="2sp"
             android:paddingBottom="@dimen/profile_misc_padding"
             android:textSize="15sp"
