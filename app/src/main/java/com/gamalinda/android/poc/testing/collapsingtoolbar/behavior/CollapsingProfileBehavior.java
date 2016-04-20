@@ -18,12 +18,6 @@ import com.gamalinda.android.poc.testing.collapsingtoolbar.R;
 
 @SuppressWarnings("unused")
 public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<LinearLayout> {
-    private static final String TAG = "BehaviorPOC";
-    private static final boolean DEBUG_LOG_HEIGHTS = false;
-    private static final boolean DEBUG_LOG_YPOS = true;
-    private static final boolean DEBUG_LOG_PROFILE_IMAGE = false;
-    private static final boolean DEBUG_LOG_PROFILE_IMAGE_LOC = true;
-
     private Context context;
 
     private View appBar;
@@ -123,7 +117,6 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
 
     private void updateHeaderProfileOffset() {
         headerProfile.setY(appBar.getY());
-        logValues();
     }
 
     private void updateProfileImageSize() {
@@ -183,31 +176,11 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         profileMisc.setAlpha(poweredValue);
     }
 
-    private float slopeCalculator(final float x1, final float y1, final float x2, final float y2) {
-        //slope = (y2 - y1) over (x2 - x1)
-        return (y2 - y1) / (x2 - x1);
-    }
-
     private float getIntercept(float m, float x, float b) {
         return m * x + b;
     }
 
     private float getUpdatedInterpolatedValue(float openSizeTarget, float closedSizeTarget) {
         return getIntercept(closedSizeTarget - openSizeTarget, normalizedRange, openSizeTarget);
-    }
-
-    private void logValues() {
-        String logText;
-        if (DEBUG_LOG_HEIGHTS) {
-            logText = "Dependency H: " + appBar.getHeight() + ", Child H: " + headerProfile.getHeight();
-            Log.i(TAG, logText);
-        }
-        if (DEBUG_LOG_YPOS) {
-            logText = "Dependency Y: " + appBar.getY() + ", Child Y: " + headerProfile.getY();
-            Log.i(TAG, logText);
-        }
-        if (DEBUG_LOG_PROFILE_IMAGE_LOC) {
-            Log.d(TAG, "Profile Image Loc: " + profileImage.getY());
-        }
     }
 }
