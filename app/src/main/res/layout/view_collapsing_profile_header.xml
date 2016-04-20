@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="#55FF55"
-            android:text="@string/test_profile_name"
             android:textSize="20sp" />
 
         <TextView
@@ -39,7 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/profileName"
-            android:text="@string/test_profile_subtitle"
             android:textSize="12sp" />
 
         <TextView
@@ -50,7 +48,6 @@
             android:drawableLeft="@mipmap/coin"
             android:drawablePadding="2sp"
             android:paddingBottom="@dimen/profile_misc_padding"
-            android:text="@string/test_profile_misc_title"
             android:textSize="15sp"
             android:textStyle="bold" />
     </RelativeLayout>

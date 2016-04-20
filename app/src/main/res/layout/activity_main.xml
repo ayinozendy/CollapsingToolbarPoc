@@ -35,6 +35,9 @@
     <include layout="@layout/content_main" />
 
     <com.gamalinda.android.poc.testing.collapsingtoolbar.view.CollapsingProfileHeaderView
+        app:profileName="Ino Gamalinda"
+        app:profileSubtitle="ino.gamalinda"
+        app:profileMisc="1234567890"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         app:layout_behavior="@string/collapsing_profile_behavior" />
