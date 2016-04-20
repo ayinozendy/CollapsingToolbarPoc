@@ -120,7 +120,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         float x = appBar.getY();
         float m = calculateSlopeForImageSizeOffset();
         float b = profileImageSizeBig;
-        float y = m * x + b; //Equation of a line
+        float y = getIntercept(m, x, b);
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileImage.getLayoutParams();
         lp.height = (int) y;
@@ -141,7 +141,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         float x = appBar.getY();
         float m = calculateSlopeForImageMargins();
         float b = profileImageMaxMargin;
-        float y = m * x + b; //Equation of a line
+        float y = getIntercept(m, x, b);
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileImage.getLayoutParams();
         lp.bottomMargin = (int) y;
@@ -169,7 +169,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         float x = appBar.getY();
         float m = calculateSlopeForProfileTextContainerOffset();
         float b = profileTextContainerMaxHeight;
-        float y = m * x + b; //Equation of a line
+        float y = getIntercept(m, x, b);
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileTextContainer.getLayoutParams();
         lp.height = (int) y;
@@ -189,7 +189,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         float x = appBar.getY();
         float m = calculateSlopeForProfileTextMarginOffset();
         float b = 0;
-        float y = m * x + b; //Equation of a line
+        float y = getIntercept(m, x, b);
 
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) profileName.getLayoutParams();
         lp.topMargin = (int) y;
@@ -216,7 +216,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         float x = appBar.getY();
         float m = 1f / (appBarHeight - toolBarHeight);
         float b = 1f;
-        float y = m * x + b; //Equation of a line
+        float y = getIntercept(m, x, b);
 
         profileSubtitle.setAlpha(y);
         profileMisc.setAlpha(y);
@@ -225,6 +225,10 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     private float slopeCalculator(final float x1, final float y1, final float x2, final float y2) {
         //slope = (y2 - y1) over (x2 - x1)
         return (y2 - y1) / (x2 - x1);
+    }
+
+    private float getIntercept(float m, float x, float b) {
+        return m * x + b;
     }
 
     private void logValues() {
