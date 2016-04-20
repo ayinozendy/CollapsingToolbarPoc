@@ -47,6 +47,9 @@
             android:layout_width="@dimen/profile_big_size"
             android:layout_height="@dimen/profile_big_size"
             android:background="#FF0055"
+            android:layout_marginLeft="@dimen/profile_image_margin_max"
+            android:layout_marginBottom="@dimen/profile_image_margin_max"
+            android:layout_marginRight="@dimen/profile_image_margin_max"
             android:contentDescription="@string/test_profile_image_desc"
             android:src="@android:drawable/ic_dialog_dialer" />
 
@@ -82,6 +85,7 @@
                 android:layout_alignParentBottom="true"
                 android:textStyle="bold"
                 android:drawableLeft="@mipmap/coin"
+                android:paddingBottom="@dimen/profile_misc_padding"
                 android:drawablePadding="2sp"
                 android:text="@string/test_profile_misc_title"
                 android:textSize="15sp" />

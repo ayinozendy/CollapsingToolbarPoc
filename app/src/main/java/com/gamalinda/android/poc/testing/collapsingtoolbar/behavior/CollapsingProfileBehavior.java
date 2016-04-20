@@ -38,6 +38,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     private int appBarHeight;
     private int profileImageSizeSmall;
     private int profileImageSizeBig;
+    private int profileImageMaxMargin;
     private int toolBarHeight;
     private int profileTextContainerMaxHeight;
     private int profileNameHeight;
@@ -50,6 +51,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         this.context = context;
         profileImageSizeSmall = (int) context.getResources().getDimension(R.dimen.profile_small_size);
         profileImageSizeBig = (int) context.getResources().getDimension(R.dimen.profile_big_size);
+        profileImageMaxMargin = (int) context.getResources().getDimension(R.dimen.profile_image_margin_max);
     }
 
     @Override
@@ -99,6 +101,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         updateProfileImageMargins();
         updateProfileTextContainerHeight();
         updateProfileTextMargin();
+        updateSubtitleAndMiscAlpha();
         return true;
     }
 
@@ -131,7 +134,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     private void updateProfileImageMargins() {
         float x = appBar.getY();
         float m = calculateSlopeForImageMargins();
-        float b = 0;
+        float b = profileImageMaxMargin;
         float y = m * x + b; //Equation of a line
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) profileImage.getLayoutParams();
@@ -144,7 +147,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     private float calculateSlopeForImageMargins() {
         int x1 = 0;
         int x2 = toolBarHeight - appBarHeight;
-        int y1 = 0;
+        int y1 = profileImageMaxMargin;
         int y2 = calculateProfileImageSmallMargin();
 
         return slopeCalculator(x1, y1, x2, y2);
@@ -201,6 +204,16 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
         int halfToolbarHeight = toolBarHeight / 2;
         int halfProfileTextHeight = profileNameHeight / 2;
         return halfToolbarHeight - halfProfileTextHeight;
+    }
+
+    private void updateSubtitleAndMiscAlpha() {
+        float x = appBar.getY();
+        float m = 1f / (appBarHeight - toolBarHeight);
+        float b = 1f;
+        float y = m * x + b; //Equation of a line
+
+        profileSubtitle.setAlpha(y);
+        profileMisc.setAlpha(y);
     }
 
     private float slopeCalculator(final float x1, final float y1, final float x2, final float y2) {

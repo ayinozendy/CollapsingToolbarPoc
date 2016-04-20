@@ -5,6 +5,8 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="profile_image_margin_max">12dp</dimen>
     <dimen name="profile_small_size">32dp</dimen>
     <dimen name="profile_big_size">64dp</dimen>
+    <dimen name="profile_misc_padding">12dp</dimen>
 </resources>
