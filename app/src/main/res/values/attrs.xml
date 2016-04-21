@@ -6,5 +6,8 @@
         <attr name="profileSubtitle" format="string" />
         <attr name="profileMisc" format="string" />
         <attr name="profileMiscIcon" format="reference" />
+        <attr name="profileNameTextSizeSp" format="integer" />
+        <attr name="profileSubtitleTextSizeSp" format="integer" />
+        <attr name="profileMiscTextSizeSp" format="integer" />
     </declare-styleable>
 </resources>

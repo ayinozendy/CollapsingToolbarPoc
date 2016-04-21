@@ -29,15 +29,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="#55FF55"
-            android:textSize="20sp" />
+            android:background="#55FF55" />
 
         <TextView
             android:id="@+id/profileSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profileName"
-            android:textSize="12sp" />
+            android:layout_below="@id/profileName" />
 
         <TextView
             android:id="@+id/profileMisc"
@@ -46,7 +44,6 @@
             android:layout_alignParentBottom="true"
             android:drawablePadding="2sp"
             android:paddingBottom="@dimen/profile_misc_padding"
-            android:textSize="15sp"
             android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>

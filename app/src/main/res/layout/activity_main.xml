@@ -41,7 +41,10 @@
         app:profileImage="@android:drawable/ic_dialog_dialer"
         app:profileMisc="1234567890"
         app:profileMiscIcon="@mipmap/coin"
+        app:profileMiscTextSizeSp="15"
         app:profileName="Ino Gamalinda"
-        app:profileSubtitle="ino.gamalinda" />
+        app:profileNameTextSizeSp="20"
+        app:profileSubtitle="ino.gamalinda"
+        app:profileSubtitleTextSizeSp="12" />
 
 </android.support.design.widget.CoordinatorLayout>
