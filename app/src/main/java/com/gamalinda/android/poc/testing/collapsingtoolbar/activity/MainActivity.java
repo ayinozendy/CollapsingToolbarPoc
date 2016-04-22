@@ -1,6 +1,7 @@
 package com.gamalinda.android.poc.testing.collapsingtoolbar.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    TabLayout tabLayout;
     ViewPager viewPager;
     List<Fragment> fragments = Collections.emptyList();
 
@@ -41,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
         if (viewPager != null) {
             viewPager.setAdapter(adapter);
         }
+
+        tabLayout = (TabLayout) findViewById(R.id.content_tabs);
+        if (tabLayout != null) {
+            tabLayout.setupWithViewPager(viewPager);
+        }
     }
 
     private void populateFragmentList() {
@@ -52,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     class FragmentsAdapter extends FragmentPagerAdapter {
 
+        String tabTitles[] = new String[]{"Long Text", "Consoles", "Games"};
         List<Fragment> fragments = Collections.emptyList();
 
         public FragmentsAdapter(FragmentManager fm) {
@@ -71,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return fragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles[position];
         }
     }
 
