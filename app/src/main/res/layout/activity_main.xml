@@ -37,13 +37,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         app:layout_behavior="@string/collapsing_profile_behavior"
-        app:profileImage="@android:drawable/ic_dialog_dialer"
+        app:profileImage="@drawable/doge_256"
         app:profileMisc="1234567890"
         app:profileMiscIcon="@mipmap/coin"
         app:profileMiscTextSizeSp="15"
-        app:profileName="Ino Gamalinda"
+        app:profileName="Shiba Inu"
         app:profileNameTextSizeSp="20"
-        app:profileSubtitle="ino.gamalinda"
+        app:profileSubtitle="wow.desu.ne"
         app:profileSubtitleTextSizeSp="12" />
 
     <LinearLayout
