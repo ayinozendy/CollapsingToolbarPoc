@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/app_bar_height"
-    android:background="#55FF0000"
     android:gravity="bottom"
     android:orientation="horizontal">
 
@@ -13,14 +12,13 @@
         android:layout_marginBottom="@dimen/profile_image_margin_max"
         android:layout_marginLeft="@dimen/profile_image_margin_max"
         android:layout_marginRight="@dimen/profile_image_margin_max"
-        android:background="#FF0055"
+        android:background="@drawable/rounded_box"
         android:contentDescription="@string/test_profile_image_desc" />
 
     <RelativeLayout
         android:id="@+id/profileTextContainer"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/app_bar_height"
-        android:background="#00DDFF"
         android:gravity="bottom"
         android:orientation="vertical">
 
@@ -29,13 +27,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="#55FF55" />
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/profileSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profileName" />
+            android:layout_below="@id/profileName"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/profileMisc"
@@ -44,6 +44,7 @@
             android:layout_alignParentBottom="true"
             android:drawablePadding="2sp"
             android:paddingBottom="@dimen/profile_misc_padding"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>
