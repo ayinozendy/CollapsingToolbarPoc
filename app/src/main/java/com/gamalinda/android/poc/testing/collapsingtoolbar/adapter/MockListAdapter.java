@@ -28,6 +28,9 @@ public class MockListAdapter extends RecyclerView.Adapter<TextItemViewHolder> {
 
     @Override
     public void onBindViewHolder(TextItemViewHolder holder, int position) {
+        if (position == items.length+1) {
+            holder.hideSeparator(true);
+        }
         holder.bind(items[position]);
     }
 
