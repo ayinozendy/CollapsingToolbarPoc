@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         if (tabLayout != null) {
             tabLayout.setupWithViewPager(viewPager);
         }
+
+        setTabIndicatorIcons();
     }
 
     private void populateFragmentList() {
@@ -55,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(new TextContentMockFragment());
         fragments.add(new ConsolesMockListFragment());
         fragments.add(new GamesMockListFragment());
+    }
+
+    private void setTabIndicatorIcons() {
+        //The tabs are fixed, let's just set the icons manually
+        tabLayout.getTabAt(0).setIcon(android.R.drawable.btn_star_big_off);
+        tabLayout.getTabAt(1).setIcon(android.R.drawable.star_big_on);
+        tabLayout.getTabAt(2).setIcon(android.R.drawable.btn_star_big_on);
     }
 
     class FragmentsAdapter extends FragmentPagerAdapter {
@@ -81,10 +90,13 @@ public class MainActivity extends AppCompatActivity {
             return fragments.size();
         }
 
+        /*
+        Use this to set tab titles
         @Override
         public CharSequence getPageTitle(int position) {
             return tabTitles[position];
         }
+        */
     }
 
 }
