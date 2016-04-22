@@ -96,4 +96,34 @@
     <string name="test_profile_subtitle">subtitle</string>
     <string name="test_profile_misc_title">misc title 12345</string>
     <string name="collapsing_profile_behavior" translatable="false">com.gamalinda.android.poc.testing.collapsingtoolbar.behavior.CollapsingProfileBehavior</string>
+    <string-array name="mock_items_consoles">
+        <item>Atari</item>
+        <item>Commodore 64</item>
+        <item>Nintendo</item>
+        <item>Sega</item>
+        <item>MSX</item>
+        <item>PC-98</item>
+        <item>NeoGeo</item>
+        <item>Playstation</item>
+        <item>Microsoft</item>
+        <item>Philips</item>
+        <item>Ouya</item>
+        <item>Gameboy</item>
+    </string-array>
+    <string-array name="mock_items_games">
+        <item>Asteroids</item>
+        <item>Pac-man</item>
+        <item>Space Invaders</item>
+        <item>Donkey Kong</item>
+        <item>Mario Brothers</item>
+        <item>Bomberman</item>
+        <item>Load Runner</item>
+        <item>Twin Bee</item>
+        <item>Ice Climber</item>
+        <item>Metroid</item>
+        <item>Castlevania</item>
+        <item>Legend of Zelda</item>
+        <item>Star Ocean</item>
+        <item>Final Fantasy</item>
+    </string-array>
 </resources>
