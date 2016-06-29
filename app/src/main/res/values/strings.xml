@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CollapsingToolbar</string>
+    <string name="app_name">Collapsing Toolbar</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="large_text">
         "The Shiba Inu.\n\n"
