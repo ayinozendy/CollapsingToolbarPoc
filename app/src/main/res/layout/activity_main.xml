@@ -36,6 +36,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:elevation="@dimen/level_4"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -46,6 +47,7 @@
     <com.gamalinda.android.poc.testing.collapsingtoolbar.view.CollapsingProfileHeaderView
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
+        android:elevation="@dimen/level_8"
         app:layout_behavior="@string/collapsing_profile_behavior"
         app:profileImage="@drawable/doge_256"
         app:profileMisc="1234567890"
@@ -54,7 +56,6 @@
         app:profileName="Shiba Inu"
         app:profileNameTextSizeSp="20"
         app:profileSubtitle="wow.desu.ne"
-        android:elevation="10dp"
         app:profileSubtitleTextSizeSp="12" />
 
     <LinearLayout
