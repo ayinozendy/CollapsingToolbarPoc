@@ -14,7 +14,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="dummy" />
+            android:value="@string/fabric_api_key" />
 
         <activity android:name=".activity.BootActivity">
             <intent-filter>
