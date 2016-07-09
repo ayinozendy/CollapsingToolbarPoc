@@ -11,9 +11,5 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World"/>
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
