@@ -1,8 +1,9 @@
 package com.gamalinda.android.poc.testing.collapsingtoolbar.view;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gamalinda.android.poc.testing.collapsingtoolbar.R;
 
@@ -12,7 +13,7 @@ public class TextItemViewHolder extends RecyclerView.ViewHolder {
 
     public TextItemViewHolder(View itemView) {
         super(itemView);
-        textView = (TextView) itemView.findViewById(R.id.list_item);
+        textView = itemView.findViewById(R.id.list_item);
         separator = itemView.findViewById(R.id.separator);
     }
 

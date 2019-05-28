@@ -1,9 +1,10 @@
 package com.gamalinda.android.poc.testing.collapsingtoolbar.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gamalinda.android.poc.testing.collapsingtoolbar.R;
 import com.gamalinda.android.poc.testing.collapsingtoolbar.view.TextItemViewHolder;
@@ -28,7 +29,7 @@ public class MockListAdapter extends RecyclerView.Adapter<TextItemViewHolder> {
 
     @Override
     public void onBindViewHolder(TextItemViewHolder holder, int position) {
-        if (position == items.length+1) {
+        if (position == items.length + 1) {
             holder.hideSeparator(true);
         }
         holder.bind(items[position]);

@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="@string/fabric_api_key" />
-
         <activity android:name=".activity.BootActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

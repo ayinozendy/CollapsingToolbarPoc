@@ -1,13 +1,13 @@
 package com.gamalinda.android.poc.testing.collapsingtoolbar.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.gamalinda.android.poc.testing.collapsingtoolbar.R;
 import com.gamalinda.android.poc.testing.collapsingtoolbar.fragment.ConsolesMockListFragment;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setTitle("");
         }
@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         FragmentsAdapter adapter = new FragmentsAdapter(getSupportFragmentManager());
         adapter.setFragments(fragments);
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
         if (viewPager != null) {
             viewPager.setAdapter(adapter);
         }
 
-        tabLayout = (TabLayout) findViewById(R.id.content_tabs);
+        tabLayout = findViewById(R.id.content_tabs);
         if (tabLayout != null) {
             tabLayout.setupWithViewPager(viewPager);
         }
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     class FragmentsAdapter extends FragmentPagerAdapter {
 
-        String tabTitles[] = new String[]{"Long Text", "Consoles", "Games"};
+        String[] tabTitles = new String[]{"Long Text", "Consoles", "Games"};
         List<Fragment> fragments = Collections.emptyList();
 
         public FragmentsAdapter(FragmentManager fm) {

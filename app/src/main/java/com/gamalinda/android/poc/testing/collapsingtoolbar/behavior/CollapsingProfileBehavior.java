@@ -2,11 +2,7 @@ package com.gamalinda.android.poc.testing.collapsingtoolbar.behavior;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,7 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.gamalinda.android.poc.testing.collapsingtoolbar.R;
+import com.google.android.material.appbar.AppBarLayout;
 
 @SuppressWarnings("unused")
 public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<LinearLayout> {
@@ -50,7 +50,7 @@ public class CollapsingProfileBehavior extends CoordinatorLayout.Behavior<Linear
     }
 
     @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, LinearLayout child, View dependency) {
+    public boolean layoutDependsOn(@NonNull CoordinatorLayout parent, @NonNull LinearLayout child, @NonNull View dependency) {
         initialize(child, dependency);
         return dependency instanceof AppBarLayout;
     }
