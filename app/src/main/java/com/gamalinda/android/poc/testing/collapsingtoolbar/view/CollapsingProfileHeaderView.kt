@@ -20,10 +20,10 @@ class CollapsingProfileHeaderView : LinearLayout {
     private var profileSubtitleTextSize: Int = 0
     private var profileMiscTextSize: Int = 0
 
-    private var profileImage: ImageView? = null
-    private var profileNameTextView: TextView? = null
-    private var subtitleTextView: TextView? = null
-    private var miscTextView: TextView? = null
+    private lateinit var profileImage: ImageView
+    private lateinit var profileNameTextView: TextView
+    private lateinit var subtitleTextView: TextView
+    private lateinit var miscTextView: TextView
 
     constructor(context: Context) : super(context)
 
@@ -64,14 +64,14 @@ class CollapsingProfileHeaderView : LinearLayout {
     }
 
     private fun applyAttributes() {
-        profileImage?.setImageResource(profileDrawable)
-        profileNameTextView?.text = profileName
-        profileNameTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, profileNameTextSize.toFloat())
-        subtitleTextView?.text = subtitle
-        subtitleTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, profileSubtitleTextSize.toFloat())
-        miscTextView?.text = misc
-        miscTextView?.setCompoundDrawablesWithIntrinsicBounds(miscIcon, 0, 0, 0)
-        miscTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, profileMiscTextSize.toFloat())
+        profileImage.setImageResource(profileDrawable)
+        profileNameTextView.text = profileName
+        profileNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, profileNameTextSize.toFloat())
+        subtitleTextView.text = subtitle
+        subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, profileSubtitleTextSize.toFloat())
+        miscTextView.text = misc
+        miscTextView.setCompoundDrawablesWithIntrinsicBounds(miscIcon, 0, 0, 0)
+        miscTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, profileMiscTextSize.toFloat())
     }
 
     fun getProfileDrawable(): Int {
@@ -80,7 +80,7 @@ class CollapsingProfileHeaderView : LinearLayout {
 
     fun setProfileDrawable(profileDrawable: Int) {
         this.profileDrawable = profileDrawable
-        profileImage!!.setImageResource(profileDrawable)
+        profileImage.setImageResource(profileDrawable)
     }
 
     fun getProfileName(): String? {
@@ -89,7 +89,7 @@ class CollapsingProfileHeaderView : LinearLayout {
 
     fun setProfileName(profileName: String) {
         this.profileName = profileName
-        profileNameTextView?.text = profileName
+        profileNameTextView.text = profileName
     }
 
     fun getSubtitle(): String? {
@@ -98,7 +98,7 @@ class CollapsingProfileHeaderView : LinearLayout {
 
     fun setSubtitle(subtitle: String) {
         this.subtitle = subtitle
-        subtitleTextView?.text = subtitle
+        subtitleTextView.text = subtitle
     }
 
     fun getMisc(): String? {
@@ -107,7 +107,7 @@ class CollapsingProfileHeaderView : LinearLayout {
 
     fun setMisc(misc: String) {
         this.misc = misc
-        miscTextView?.text = misc
+        miscTextView.text = misc
     }
 
     fun getMiscIcon(): Int {
@@ -116,6 +116,6 @@ class CollapsingProfileHeaderView : LinearLayout {
 
     fun setMiscIcon(miscIcon: Int) {
         this.miscIcon = miscIcon
-        miscTextView?.setCompoundDrawablesWithIntrinsicBounds(miscIcon, 0, 0, 0)
+        miscTextView.setCompoundDrawablesWithIntrinsicBounds(miscIcon, 0, 0, 0)
     }
 }
