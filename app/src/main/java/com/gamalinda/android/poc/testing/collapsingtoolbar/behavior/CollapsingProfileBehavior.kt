@@ -12,7 +12,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.gamalinda.android.poc.testing.collapsingtoolbar.R
 import com.google.android.material.appbar.AppBarLayout
 
-class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSet) : CoordinatorLayout.Behavior<LinearLayout>(context, attrs) {
+@Suppress("unused")
+class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSet) :
+        CoordinatorLayout.Behavior<LinearLayout>(context, attrs) {
 
     private lateinit var appBar: View
     private lateinit var headerProfile: View
