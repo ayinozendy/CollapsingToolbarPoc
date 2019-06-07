@@ -53,8 +53,11 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
     }
 
     override fun layoutDependsOn(parent: CoordinatorLayout, child: LinearLayout, dependency: View): Boolean {
-        initialize(child, dependency)
-        return dependency is AppBarLayout
+        val isDependencyAnAppBar = dependency is AppBarLayout
+        if (isDependencyAnAppBar) {
+            initialize(child, dependency)
+        }
+        return isDependencyAnAppBar
     }
 
     private fun initialize(child: LinearLayout, dependency: View) {
@@ -85,16 +88,30 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
     }
 
     override fun onDependentViewChanged(parent: CoordinatorLayout, child: LinearLayout, dependency: View): Boolean {
-        toolBarHeight = appBar.findViewById<View>(R.id.toolbar).height
-        updateNormalizedRange()
-        updateOffset()
-        return true
+        val isDependencyAnAppBar = dependency is AppBarLayout
+        if (isDependencyAnAppBar) {
+            toolBarHeight = appBar.findViewById<View>(R.id.toolbar).height
+            updateNormalizedRange()
+            updateOffset()
+        }
+        return isDependencyAnAppBar
     }
 
     private fun updateNormalizedRange() {
-        val dividend = appBar.y
-        val divisor = (toolBarHeight - appBarHeight).toFloat()
-        normalizedRange = dividend / divisor
+        val abl = appBar as AppBarLayout
+        normalizedRange = normalize(
+                currentValue = appBar.y + abl.totalScrollRange,
+                minValue = 0f,
+                maxValue = abl.totalScrollRange.toFloat()
+        )
+
+        normalizedRange = 1f - normalizedRange
+    }
+
+    private fun normalize(currentValue: Float, minValue: Float, maxValue: Float): Float {
+        val dividend = currentValue - minValue
+        val divisor = maxValue - minValue
+        return dividend / divisor
     }
 
     private fun updateOffset() {
