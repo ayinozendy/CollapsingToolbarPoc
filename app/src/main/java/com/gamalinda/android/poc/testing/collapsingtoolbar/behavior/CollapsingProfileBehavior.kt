@@ -12,7 +12,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.gamalinda.android.poc.testing.collapsingtoolbar.R
 import com.google.android.material.appbar.AppBarLayout
 
-class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSet) : CoordinatorLayout.Behavior<LinearLayout>(context, attrs) {
+@Suppress("unused")
+class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSet) :
+        CoordinatorLayout.Behavior<LinearLayout>(context, attrs) {
 
     private lateinit var appBar: View
     private lateinit var headerProfile: View
@@ -30,7 +32,6 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
     private var toolBarHeight: Int = 0
     private var profileTextContainerMaxHeight: Int = 0
     private var profileNameHeight: Int = 0
-    private val profileNameMaxMargin: Int = 0
 
     private var normalizedRange: Float = 0.toFloat()
 
@@ -40,8 +41,6 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
             val display = wm.defaultDisplay
             val size = Point()
             display.getSize(size)
-            val width = size.x
-            val height = size.y
             return size
         }
 
@@ -53,8 +52,11 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
     }
 
     override fun layoutDependsOn(parent: CoordinatorLayout, child: LinearLayout, dependency: View): Boolean {
-        initialize(child, dependency)
-        return dependency is AppBarLayout
+        val isDependencyAnAppBar = dependency is AppBarLayout
+        if (isDependencyAnAppBar) {
+            initialize(child, dependency)
+        }
+        return isDependencyAnAppBar
     }
 
     private fun initialize(child: LinearLayout, dependency: View) {
@@ -85,16 +87,30 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
     }
 
     override fun onDependentViewChanged(parent: CoordinatorLayout, child: LinearLayout, dependency: View): Boolean {
-        toolBarHeight = appBar.findViewById<View>(R.id.toolbar).height
-        updateNormalizedRange()
-        updateOffset()
-        return true
+        val isDependencyAnAppBar = dependency is AppBarLayout
+        if (isDependencyAnAppBar) {
+            toolBarHeight = appBar.findViewById<View>(R.id.toolbar).height
+            updateNormalizedRange()
+            updateOffset()
+        }
+        return isDependencyAnAppBar
     }
 
     private fun updateNormalizedRange() {
-        val dividend = appBar.y
-        val divisor = (toolBarHeight - appBarHeight).toFloat()
-        normalizedRange = dividend / divisor
+        val abl = appBar as AppBarLayout
+        normalizedRange = normalize(
+                currentValue = appBar.y + abl.totalScrollRange,
+                minValue = 0f,
+                maxValue = abl.totalScrollRange.toFloat()
+        )
+
+        normalizedRange = 1f - normalizedRange
+    }
+
+    private fun normalize(currentValue: Float, minValue: Float, maxValue: Float): Float {
+        val dividend = currentValue - minValue
+        val divisor = maxValue - minValue
+        return dividend / divisor
     }
 
     private fun updateOffset() {
