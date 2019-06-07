@@ -30,7 +30,6 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
     private var toolBarHeight: Int = 0
     private var profileTextContainerMaxHeight: Int = 0
     private var profileNameHeight: Int = 0
-    private val profileNameMaxMargin: Int = 0
 
     private var normalizedRange: Float = 0.toFloat()
 
@@ -40,8 +39,6 @@ class CollapsingProfileBehavior(private val context: Context, attrs: AttributeSe
             val display = wm.defaultDisplay
             val size = Point()
             display.getSize(size)
-            val width = size.x
-            val height = size.y
             return size
         }
 
